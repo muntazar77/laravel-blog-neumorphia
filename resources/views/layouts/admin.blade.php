@@ -50,7 +50,7 @@
 
                 <div class="right-content">
                     <div class="user">
-                        <img src="1.jpg" alt="" width="40" height="40" srcset="">
+                        <img src="/1.jpg" alt="" width="40" height="40" srcset="">
                         <span>Montazar</span>
                     </div>
 
@@ -131,8 +131,31 @@
 
 
 
+    {{-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> --}}
+
+    {{-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> --}}
+
+
+        <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/headroom.js/dist/headroom.min.js"></script>
+
+    <!-- Vendor JS -->
+    <script src="/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+    <script src="/vendor/nouislider/distribute/nouislider.min.js"></script>
+    <script src="/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="/vendor/jarallax/dist/jarallax.min.js"></script>
+    <script src="/vendor/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+    <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="/vendor/prismjs/prism.js"></script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script src="/js/main.js"></script>
+    <script src="/js/neumorphism.js"></script>
 
 </body>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class UserController extends Controller
 {
@@ -29,7 +30,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    
+
+     
+     
+        
+   
+
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => "required|email|unique:users,email",
+            'password' => 'required'
+        ]);
+
+        
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+       
+        return to_route('users.index')->with('success', 'User created successfully');
+
+   
+
     }
 
     /**
@@ -59,8 +86,13 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($userId)
     {
-        //
+        $user = User::find($userId);
+        $user->delete();
+
+            return redirect()->route('users.index')->with('success', 'User deleted successfully');
+
     }
+   
 }
