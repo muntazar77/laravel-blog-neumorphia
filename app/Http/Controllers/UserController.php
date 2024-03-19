@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin/users', ['users' =>$users]);
+        return view('admin/users', ['users' => $users]);
     }
 
     /**
@@ -30,13 +30,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-    
 
-     
-     
-        
-   
+
+
 
 
         $validated = $request->validate([
@@ -45,18 +41,15 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        
+
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-       
+
         return to_route('users.index')->with('success', 'User created successfully');
-
-   
-
     }
 
     /**
@@ -70,17 +63,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($userId)
     {
-        //
+        // dd($userId);
+        $user = User::find($userId);
+        return view('admin/user_post_edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $userId)
     {
-        //
+
+
+        $name = $request->name;
+        $email = $request->email;
+        $password = bcrypt($request->password);
+
+
+        $singleUserFromDB = User::find($userId);
+
+        if ($request->password != null) {
+
+            $singleUserFromDB->update([
+                'name' => $name,
+                'email' => $email,
+                'password' => $password,
+            ]);
+        } else {
+            $singleUserFromDB->update([
+                'name' => $name,
+                'email' => $email,
+
+            ]);
+        }
+
+        return to_route('users.index')->with('success', 'User updated successfully');
     }
 
     /**
@@ -91,8 +110,6 @@ class UserController extends Controller
         $user = User::find($userId);
         $user->delete();
 
-            return redirect()->route('users.index')->with('success', 'User deleted successfully');
-
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
-   
 }

@@ -17,4 +17,6 @@ Route::get('/admin', function(){
 
 Route::get('/admin/users',[UserController::class, 'index'])->name('users.index');
 Route::post('/admin/users',[UserController::class, 'store'])->name('users.store');
-Route::delete('/admin/users/{post}',[UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('/admin/users/{user}',[UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/admin/users/{user}/edit',[UserController::class, 'edit'])->name('users.edit');
+Route::put('/admin/users/{user}/edit',[UserController::class, 'update'])->name('users.update');
