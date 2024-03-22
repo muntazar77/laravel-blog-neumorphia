@@ -1,12 +1,11 @@
 
 @extends('layouts.admin')
-
-@section('title', 'Users')
 @section('page-title', 'Edit Page')
-@section('content')
-
-
     
+
+
+
+
 @if ($errors->any())
         @foreach ($errors->all() as $error)
 <div class="alert  alert-danger alert-dismissible shadow-soft fade show" role="alert">
@@ -34,6 +33,60 @@
     @endif
 
 
+
+
+{{-- This code for Category Page --}}
+
+@if($page_type == 'category_edit')
+
+@section('title', 'Categories')
+@section('content')
+    
+    <div class="container">
+        <div class="modal-body p-0">
+            <div class="card bg-primary shadow-soft border-light p-4">
+              
+                <div class="card-header text-center pb-0">
+                    <h2 class="h4">Edit Category</h2>
+                    <span>Edit category here</span>   
+                </div>
+                <div class="card-body">
+                    <form action="{{route('categories.update',$category->id)}}" method="POST" class="mt-3 text-left">
+                        <!-- Form -->
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group ">
+                            <label for="exampleInputIcon3">Name</label>
+                            <div class="input-group mb-4">
+                                <input  class="form-control" name="name" id="exampleInputIcon3"  value="{{$category->name}}" type="text" aria-label="name" required>
+                            </div>
+                        </div>
+                   
+                        <button type="submit" class="btn btn-block btn-primary mb-3">Update</button>
+                    </form>
+                        <!-- End of Form -->
+                 
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            @endsection
+@endif
+
+
+
+
+
+
+
+
+{{-- This code for User Page --}}
+@if($page_type == 'user_edit')
+@section('title', 'Users')
+@section('content')
     
     <div class="container">
         <div class="modal-body p-0">
@@ -64,8 +117,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword6">Password</label>
                                 <div class="input-group mb-4">
-       dd($request->all());
-                                    <input class="form-control" name="password" id="exampleInputPassword6"  placeholder="Password" type="password" aria-label="Password" >
+    
+                                    <input class="form-control" name="password" id="exampleInputPassword6"   placeholder="Password" type="password" aria-label="Password" >
                                 </div>
                             </div>
                         </div>
@@ -79,5 +132,7 @@
         </div>
     </div>
 
-
             @endsection
+@endif
+
+

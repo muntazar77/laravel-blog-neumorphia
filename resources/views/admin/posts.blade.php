@@ -1,8 +1,8 @@
 
 @extends('layouts.admin')
 
-@section('title', 'Users')
-@section('page-title', 'Users Page')
+@section('title', 'Pists')
+@section('page-title', 'Posts Page')
 @section('content')
 
 
@@ -37,28 +37,32 @@
             <!-- table -->
             <div class="table">
                 <div class="head">
-                    <h4>Table users</h4>
-                    <button type="button" id="openModalButton"  data-toggle="modal" data-target="#modal-form">Create New User</button>
+                    <h4>Table Posts</h4>
+                    <a class="actionButton " href="{{route('posts.create')}}"><button >Create New Post</button></a>
+                    
+                  
                 
                 </div>
 
                 <table>
                     <th>id</th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Crated By</th>
+
                     <th>Crated Data</th>
                     <th>Action</th>
 
-                    @foreach ($users as $user)
+                    @foreach ($posts as $post)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{$user->created_at->format('Y-m-d')}}</td>
-
+                            <td>{{ $post->id }}</td>
+                            <td><img src="{{asset('images/'.$post->image)}}" alt="" style="width: 65px; height: 65px;"></td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{$post->user ? $post->user->name : 'not found'}}</td>
+                             <td>{{$post->created_at->format('Y-m-d')}}</td>
                             <td>
-                                <a class="actionButton editButton" href="{{route('users.edit',$user->id)}}">Edit</a>
-                                <form style="display: inline;" method="POST" action="{{route('users.destroy', $user->id)}}">
+                                <a class="actionButton editButton" href="{{route('posts.edit',$post->id)}}">Edit</a>
+                                <form style="display: inline;" method="POST" action="{{route('posts.destroy', $post->id)}}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="actionButton deleteButton ">Delete</button>
@@ -88,34 +92,60 @@
                         <span aria-hidden="true">×</span>
                     </button>
                     <div class="card-header text-center pb-0">
-                        <h2 class="h4">Create New User</h2>
-                        <span>create new user here</span>   
+                        <h2 class="h4">Create New Post</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('users.store')}}" method="POST" class="mt-3 text-left">
+                        <form action="{{route('posts.store')}}" method="POST" class="mt-1 text-left">
                             <!-- Form -->
                             @csrf
                             @method('POST')
                             <div class="form-group ">
-                                <label for="exampleInputIcon3">Your Name</label>
+                                <label for="exampleInputIcon3">Title</label>
                                 <div class="input-group mb-4">
-                                    <input  class="form-control" name="name" id="exampleInputIcon3"  placeholder="name" type="text" aria-label="name" required>
+                                    <input  class="form-control" name="title" id="exampleInputIcon3"  placeholder="Title" type="text" aria-label="name" required>
                                 </div>
                             </div>
+
+
+                            <div class="form-group">
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Post Creator </label>
+                                <select name="post_creator" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option selected>Choose...</option>
+                                    <option value="1">United States</option>
+                
+                                </select>
+                            </div>
+
                             <div class="form-group ">
-                                <label for="exampleInputIcon3">Your email</label>
-                                <div class="input-group mb-4">
-                                    <input  class="form-control" name="email" id="exampleInputIcon3" placeholder="example@company.com" type="text" aria-label="email adress" required>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword6">Content</label>
+                                    <div class="input-group mb-4">
+                                        <textarea  class="form-control" name="content" id="" cols="30" rows="10" id="exampleInputconnent" placeholder="content" aria-label="content" required></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword6">Password</label>
+                                    <label for="exampleInputPassword6">Image</label>
                                     <div class="input-group mb-4">
-                                        <input class="form-control" name="password" id="exampleInputPassword6" placeholder="Password" type="password" aria-label="Password" required>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="form-group ">
+                                <div class="form-check square-check">
+                                    <input class="form-check-input" name="featured" type="checkbox" value="" id="defaultCheck222">
+                                    <label class="form-check-label" for="defaultCheck222">
+                                      Featured 
+                                    </label>
+                                </div>
+                            </div>
+                           
                             <button type="submit" class="btn btn-block btn-primary mb-3">create</button>
                         </form>
                             <!-- End of Form -->

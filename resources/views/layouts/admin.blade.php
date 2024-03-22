@@ -24,8 +24,8 @@
             <div class="linkes">
                 <a href="{{route('admin.index')}}">Dashbord</a>
                 <a href="{{route('users.index')}}">Usrts</a>
-                <a href="posts.html">posts</a>
-                <a href="category.html">category</a><br>
+                <a href="{{route('posts.index')}}">Posts</a>
+                <a href="{{route('categories.index')}}">Categories</a>
 
                 <p>Disghen by Montazar </p>
             </div>
@@ -81,41 +81,25 @@
             </div>
 
 
-            <div class="welcome-title">
-                <h1>@yield('page-title')</h1>
-            </div>
+             <div class="welcome-title">
+                <h3>@yield('page-title')</h3>
+            </div> 
+            
+            
+
+            {{-- <div class="mt-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-gray breadcrumb-transparent">
+                        <li class="breadcrumb-item"><a href="#">Dashbord</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    </ol>
+                </nav>
+
+            </div> --}}
+            
+          
          
-
-                  <!-- The Modal -->
-                  {{-- <div id="myModal" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h2>Create a New Post</h2><br>
-                            <form id="postForm">
-                                <div>
-                                    <label for="title">Title:</label>
-                                    <input type="text" id="title" name="title">
-                                </div>
-                                <div>
-                                    <label for="author">Author:</label>
-                                    <input type="text" id="author" name="author">
-                                </div>
-                                <div>
-                                    <label for="content">Content:</label>
-                                    <textarea id="content" name="content" cols="30" rows="10"></textarea><br>
-                                </div><br>
-                            <!-- <button type="button">Submit</button> -->
-                                <input class="btn-modal"  type="submit" value="Submit">
-                            </form>
-                        </div>
-                    </div> --}}
-
-         
-              
-              
-              
               
                  @yield('content')
 

@@ -31,10 +31,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
-
-
-
         $validated = $request->validate([
             'name' => 'required',
             'email' => "required|email|unique:users,email",
@@ -67,7 +63,7 @@ class UserController extends Controller
     {
         // dd($userId);
         $user = User::find($userId);
-        return view('admin/user_post_edit', ['user' => $user]);
+        return view('admin/user_category_edit', ['user' => $user,'page_type' => 'user_edit']);
     }
 
     /**

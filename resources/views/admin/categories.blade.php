@@ -1,8 +1,8 @@
 
 @extends('layouts.admin')
 
-@section('title', 'Users')
-@section('page-title', 'Users Page')
+@section('title', 'Category')
+@section('page-title', 'Categories Page')
 @section('content')
 
 
@@ -37,28 +37,27 @@
             <!-- table -->
             <div class="table">
                 <div class="head">
-                    <h4>Table users</h4>
-                    <button type="button" id="openModalButton"  data-toggle="modal" data-target="#modal-form">Create New User</button>
+                    <h4>Table Category</h4>
+                    <button type="button" id="openModalButton"  data-toggle="modal" data-target="#modal-form">Create New Category</button>
                 
                 </div>
 
                 <table>
                     <th>id</th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th>Crated Data</th>
                     <th>Action</th>
 
-                    @foreach ($users as $user)
+                    @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{$user->created_at->format('Y-m-d')}}</td>
-
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>{{$category->created_at->format('Y-m-d')}}</td>
                             <td>
-                                <a class="actionButton editButton" href="{{route('users.edit',$user->id)}}">Edit</a>
-                                <form style="display: inline;" method="POST" action="{{route('users.destroy', $user->id)}}">
+                                <a class="actionButton editButton" href="{{route('categories.edit',$category->id)}}">Edit</a>
+                                {{-- <button type="submit" class="actionButton editButton"">Edit</button> --}}
+                              
+                                <form style="display: inline;" method="POST" action="{{route('categories.destroy', $category->id)}}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="actionButton deleteButton ">Delete</button>
@@ -88,32 +87,18 @@
                         <span aria-hidden="true">×</span>
                     </button>
                     <div class="card-header text-center pb-0">
-                        <h2 class="h4">Create New User</h2>
+                        <h2 class="h4">Create New Category</h2>
                         <span>create new user here</span>   
                     </div>
                     <div class="card-body">
-                        <form action="{{route('users.store')}}" method="POST" class="mt-3 text-left">
+                        <form action="{{route('categories.store')}}" method="POST" class="mt-3 text-left">
                             <!-- Form -->
                             @csrf
                             @method('POST')
                             <div class="form-group ">
-                                <label for="exampleInputIcon3">Your Name</label>
+                                <label for="exampleInputIcon3">Category Name</label>
                                 <div class="input-group mb-4">
-                                    <input  class="form-control" name="name" id="exampleInputIcon3"  placeholder="name" type="text" aria-label="name" required>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="exampleInputIcon3">Your email</label>
-                                <div class="input-group mb-4">
-                                    <input  class="form-control" name="email" id="exampleInputIcon3" placeholder="example@company.com" type="text" aria-label="email adress" required>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <div class="form-group">
-                                    <label for="exampleInputPassword6">Password</label>
-                                    <div class="input-group mb-4">
-                                        <input class="form-control" name="password" id="exampleInputPassword6" placeholder="Password" type="password" aria-label="Password" required>
-                                    </div>
+                                    <input  class="form-control" name="name" id="exampleInputIcon3"  type="text" aria-label="name" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary mb-3">create</button>

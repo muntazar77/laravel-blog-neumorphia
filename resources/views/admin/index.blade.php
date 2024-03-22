@@ -10,11 +10,9 @@
 
 
 
-<div class="cards">
-    <div class="row">
-
-        <div class="col-lg-3 col-md-4 col-sm-6 card-dash p-3">
-            <div class="">
+<div class="cards  m-3">
+    <div class="row justify-content-center ">
+        <div class="col-lg-3 col-md-4 col-sm-6 card-dash p-3 ">
                 <div class="row no-gutters align-items-center">
                     <div class="icon col-md-4">
                         <i class="fas fa-users fa-3x"></i>
@@ -24,12 +22,11 @@
                             <h1>950</h1>
                             <p>Out ot 10</p>
                     </div>
-                </div>
             </div>
         </div>
     
-        <div class="col-lg-3 col-md-4 col-sm-6  card-dash">
-            <div class="p-3">
+        <div class="col-lg-3 col-md-4 col-sm-6  card-dash p-3">
+            <div class="">
                 <div class="row no-gutters align-items-center">
                     <div class="icon col-md-4">
                         <i class="fas fa-cart-arrow-down fa-3x"></i>
