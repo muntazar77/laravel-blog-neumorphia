@@ -20,7 +20,7 @@
     <div class="minet">
 
         <div class="menu">
-            <h3 class="logo">Logo</h3>
+            <h3 class="logo">Admin</h3>
             <div class="linkes">
                 <a href="{{route('admin.index')}}">Dashbord</a>
                 <a href="{{route('users.index')}}">Usrts</a>

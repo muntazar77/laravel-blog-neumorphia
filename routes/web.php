@@ -3,20 +3,20 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashbordController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::get('/admin', function(){
-    $users = App\Models\User::all();
-    return view('admin/index',['users' => $users]);
-})->name('admin.index');
+Route::get('/admin',[DashbordController::class, 'index'])->name('admin.index');
 
 // Route::resource('/admin/users', 'App\Http\Controllers\UserController');
 
+Route::get('users/{id}',);
 // Route for users
 Route::get('/admin/users',[UserController::class, 'index'])->name('users.index');
 Route::post('/admin/users',[UserController::class, 'store'])->name('users.store');
@@ -34,12 +34,15 @@ Route::get('/admin/posts/{post}/edit',[PostController::class, 'edit'])->name('po
 Route::put('/admin/posts/{post}/edit',[PostController::class, 'update'])->name('posts.update');
 
 
-// category
+
+//Route for category
 Route::get('/admin/categories',[CategoryController::class, 'index'])->name('categories.index');
 Route::post('/admin/categories',[CategoryController::class, 'store'])->name('categories.store');
-
-
 Route::delete('/admin/categories/{category}',[CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('/admin/categories/{category}/edit',[CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/admin/categories/{category}/edit',[CategoryController::class, 'update'])->name('categories.update');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
