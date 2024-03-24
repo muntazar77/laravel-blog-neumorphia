@@ -9,6 +9,7 @@ use App\Models\Category;
 
 class dashbordController extends Controller
 {
+ 
     
     public function index(){
         $users = User::all();
@@ -19,5 +20,13 @@ class dashbordController extends Controller
         // $posts_cont = count($posts);
         // $categories_cont = count($categories);
         return view('admin/dashbord',['users' => $users , 'posts' => $posts , 'categories' => $categories]);
+    }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    public function login(){
+        return view('admin/login');
     }
 }

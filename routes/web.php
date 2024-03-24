@@ -4,8 +4,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +15,8 @@ Route::get('/', function () {
 
 
 Route::get('/admin',[DashbordController::class, 'index'])->name('admin.index');
+
+Route::get('/admin/login', [DashbordController::class, 'login'])->name('admin.login');
 
 // Route::resource('/admin/users', 'App\Http\Controllers\UserController');
 
@@ -43,6 +47,11 @@ Route::get('/admin/categories/{category}/edit',[CategoryController::class, 'edit
 Route::put('/admin/categories/{category}/edit',[CategoryController::class, 'update'])->name('categories.update');
 
 
+// Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
