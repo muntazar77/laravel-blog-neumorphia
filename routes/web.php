@@ -50,6 +50,9 @@ Route::put('/admin/categories/{category}/edit',[CategoryController::class, 'upda
 // Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home/post/{post}', [HomeController::class, 'post_show'])->name('home.post.show');
+
+
 
 
 Auth::routes();

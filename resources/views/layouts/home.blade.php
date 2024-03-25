@@ -14,7 +14,7 @@
 
 <!-- Pixel CSS -->
 <link type="text/css" href="/css/neumorphism.css" rel="stylesheet">
-
+{{-- <link type="text/css" href="/css/style.css" --}}
 
 </head>
 

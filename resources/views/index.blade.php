@@ -134,7 +134,7 @@
         <!--#######################  Featured and Trending posts section  #######################-->
 
 <section class="posts">
-        <div class="container">
+        <div class="container_posts">
             <div class="row">
 
                 <div class="col-8 col-md-8 mb-4">
@@ -144,10 +144,8 @@
                     </div>
                         <div class="row">
 
-
-                            
-                                
-                      
+                            @foreach($posts_fovourite as $post)
+                
                             <div class="col-6 col-md-6 mb-3">
                                 <div class="card bg-primary shadow-soft border-light">
                                     <div class="row no-gutters align-items-center">
@@ -156,10 +154,10 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <a href="#"><h3 class="h5 card-title">We partnered up with Google</h3></a>
-                                                <p class="card-text"> Johnson smith in Design </p>
+                                                <a href="{{route('home.post.show',$post->id)}}"><h3 class="h5 card-title">{{Str::limit($post->title,30)}}</h3></a>
+                                                <p class="card-text">{{Str::limit($post->content, 50)}} </p>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>15 March 2020</span>
+                                                    <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{$post->created_at->diffForHumans()}}</span>
                                                     <a href="#" class="small"><span class="far fa-comments mr-2"></span>21</a>
                                                 </div>
                                             </div>
@@ -167,6 +165,7 @@
                                     </div>
                             </div>
                         </div>
+                        @endforeach
                         
            
           
