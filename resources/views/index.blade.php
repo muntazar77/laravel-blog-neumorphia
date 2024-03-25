@@ -78,7 +78,7 @@
             <div class="col-12 col-md-4 mb-3">
                 <div class="card bg-primary border-light shadow-soft">
                     <div class="card-header p-3">
-                        <img src="/images/home/blog-article-2.jpg" class="card-img-top rounded" alt="Designer desk">
+                        <img src="/images/{{$post->image}}" class="card-img-top rounded" alt="Designer desk"style="width: 315px;height: 177px;">
                     </div>
                     <div class="card-body pt-2">
                         <div class="media d-flex align-items-center justify-content-between">
@@ -91,9 +91,10 @@
                                 <span class="small"><span class="far fa-calendar-alt mr-2"></span>{{$post->created_at->diffForHumans()}}</span>
                             </div>
                         </div> 
-                        <h3 class="h5 card-title mt-4">{{$post->title}}</h3>
+                        <a href="{{route('home.post.show',$post->title)}}">
+                        <h3 class="h5 card-title mt-4">{{Str::limit($post->title, 60)}}</h3></a>
                         <p class="card-text">{{Str::limit($post->content, 100)}} </p>
-                        <a href="#" class="btn btn-primary btn-sm">Learn More</a>
+                        <a href="{{route('home.post.show',$post->title)}}" class="btn btn-primary btn-sm">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +102,10 @@
 
 
         </div>
-        <div class="container row justify-content-center mt-5 ">
+        {{-- {{ $posts->links() }} --}}
+        {{ $posts->links('layouts.pagination') }}
+
+        {{-- <div class="container row justify-content-center mt-5 ">
             <nav aria-label="Blog page navigation" class="row">
                 <ul class="pagination">
                     <li class="page-item">
@@ -120,7 +124,7 @@
                 </ul>
             </nav>
            </div>
-    </div>
+    </div> --}}
 </section>
 
     <!--#######################  End of posts section  #######################-->
@@ -150,11 +154,11 @@
                                 <div class="card bg-primary shadow-soft border-light">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-md-4">
-                                            <img src="/images/home/blog-article-5.jpg" class="card-img rounded-left" alt="Artist desk">
+                                            <img src="/images/{{$post->image}}" class="card-img rounded-left" alt="Artist desk"style="width: 155px;height: 165px;">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <a href="{{route('home.post.show',$post->id)}}"><h3 class="h5 card-title">{{Str::limit($post->title,30)}}</h3></a>
+                                                <a href="{{route('home.post.show',$post->title)}}"><h3 class="h5 card-title">{{Str::limit($post->title,30)}}</h3></a>
                                                 <p class="card-text">{{Str::limit($post->content, 50)}} </p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{$post->created_at->diffForHumans()}}</span>
