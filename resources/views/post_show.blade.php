@@ -1,6 +1,8 @@
 
 @extends('layouts.home')
 @section('content')
+@section('page_titel', "show | $post->title")
+
 
 
 

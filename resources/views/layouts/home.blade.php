@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Blog</title>
+<title>@yield('page_titel')</title>
 
 
 
@@ -22,16 +22,16 @@
     <header class="header-global">
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light">
         <div class="container position-relative">
-            <a class="navbar-brand shadow-soft py-2 px-3 rounded border border-light mr-lg-4" href="index.html">
-                <img class="navbar-brand-dark" src="/images/home/dark.svg" alt="Logo light">
-                <img class="navbar-brand-light" src="/images/home/dark.svg" alt="Logo dark">
+            <a class="navbar-brand shadow-soft py-2 px-3 rounded border border-light mr-lg-4" href="{{route('home')}}">
+                <img class="navbar-brand-dark" src="/images/home/brand/dark.svg" alt="Logo light">
+                <img class="navbar-brand-light" src="/images/home/brand/dark.svg" alt="Logo dark">
             </a>
             <div class="navbar-collapse collapse" id="navbar_global">
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="home.html" class="navbar-brand shadow-soft py-2 px-3 rounded border border-light">
-                                <img src="/images/home/dark.svg" alt="Themesberg logo">
+                                <img src="/images/home/brand/dark.svg" alt="Themesberg logo">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">
@@ -42,14 +42,14 @@
                 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown" >
-                            <span class="nav-link-inner-text">Pages</span>
+                            <span class="nav-link-inner-text">Categories</span>
                             <span class="fas fa-angle-down nav-link-arrow ml-2"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pricing</a></li>
-                            <li><a class="dropdown-item" href="/about.html">About</a></li>
-                            <li><a class="dropdown-item" href="/contact.html">Contact</a></li>
-            
+                            @foreach ($categories as $category)
+                            <li><a class="dropdown-item" href="#">{{$category->name}}</a></li>
+                          
+                            @endforeach
                         </ul>
                     </li>
               
@@ -73,12 +73,12 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="about.html" class="nav-link">
+                        <a href="{{route('home.about')}}" class="nav-link">
                             <span class="nav-link-inner-text">About</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="contact.html" class="nav-link"  >
+                        <a href="{{route('home.contact')}}" class="nav-link"  >
                             <span class="nav-link-inner-text">Contact</span>
                         </a>
                     </li>
@@ -301,16 +301,14 @@
                 </ul>
             </div>
             <div class="col-6 col-lg-2 mb-5 mb-lg-0">
-                <h5>Other</h5>
+                <h5>Categories</h5>
                 <ul class="footer-links list-unstyled mt-2">
-             
+                    @foreach ($categories as $category)
                     <li class="mb-1">
-                        <a class="p-2" href="#" target="_blank">Changelog</a>
+                        <a class="p-2" href="#">{{$category->name}}</a>
                     </li>
-                    <li class="mb-1">
-                        <a class="p-2" target="_blank" href="#">License</a>
-                    </li>
-        
+                 
+                    @endforeach
                 </ul>
             </div>
             <div class="col-12 col-lg-4 mb-5 mb-lg-0">

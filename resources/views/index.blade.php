@@ -1,7 +1,7 @@
 
 @extends('layouts.home')
 @section('content')
-
+@section('page_titel', 'Home')
 
 
 
