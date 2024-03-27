@@ -8,10 +8,10 @@ use Illuminate\Validation\Validator;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,14 +38,17 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => "required|email|unique:users,email",
-            'password' => 'required'
+            'password' => 'required',
+            'role' => 'required'
+
         ]);
 
-
+// dd($request->role);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => bcrypt($request->password)
         ]);
 
@@ -79,6 +82,7 @@ class UserController extends Controller
 
         $name = $request->name;
         $email = $request->email;
+        $role =$request->role;
         $password = bcrypt($request->password);
 
 
@@ -90,11 +94,13 @@ class UserController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'password' => $password,
+                'role' => $role,
             ]);
         } else {
             $singleUserFromDB->update([
                 'name' => $name,
                 'email' => $email,
+                'role' => $role,
 
             ]);
         }

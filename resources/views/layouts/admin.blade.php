@@ -51,33 +51,61 @@
                 <div class="right-content">
                     <div class="user">
                         <img src="/1.jpg" alt="" width="40" height="40" srcset="">
-                        <span>Montazar</span>
+                        <span>{{Auth::user()->name}}</span>
+                        {{-- @dd(Auth::user()->name) --}}
                     </div>
 
+
+                 
+
+
+
+
+
                     <!-- Notifications Menu -->
-                    <div class="menu-bar notifications-menu">
-                        <button class="menu-button">
+                    <div class="dropdown">
+                        <div class="btn-group dropleft mb-2 mr-2">
+                            <button type="button" class="menu-button dropdown-toggle dropdown-toggle-split mr-n1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell"></i>
-                        </button>
-                        <div class="menu-content">
-                            <!-- Add your notifications here -->
-                            <p>No new notifications</p>
+                                {{-- <span class="fas fa-angle-down dropdown-arrow"></span>
+                                <span class="sr-only">Toggle Dropdown</span> --}}
+                            </button>
+                            <div class="dropdown-menu">
+                                <p>No new notifications</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Login/Logout Menu -->
-                    <div class="menu-bar login-logout-menu">
-                        <button class="menu-button">
-                            <i class="fas fa-user"></i>
-                        </button>
-                        <div class="menu-content">
-                            <!-- Add your login/logout options here -->
-                            <a href="#">Login</a><br>
-                            <a href="#">Logout</a>
-                        </div>
-                    </div>
 
+                    <div class="dropdown menu-bar login-logout-menu">
+                        <div class="btn-group dropleft mb-2 mr-2">
+                         
+                            <button type="button" class="menu-button dropdown-toggle dropdown-toggle-split mr-n1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                                {{-- <span class="sr-only">Toggle Dropdown</span> --}}
+                            </button>
+                            <div class="dropdown-menu">
+                                {{-- <a class="dropdown-item" href="#">Login</a> --}}
+                                {{-- <a class="dropdown-item" href="#">Logout</a> --}}
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                {{-- <div class="dropdown-divider"></div> --}}
+                            </div>
+                        </div>
+                    
+
+                
                 </div>
+            </div>
+
             </div>
 
 

@@ -113,6 +113,16 @@
                                 <input  class="form-control" name="email" id="exampleInputIcon3" value="{{$user->email}}" placeholder="example@company.com" type="text" aria-label="email adress" required>
                             </div>
                         </div>
+
+                        <div class="form-group ">
+                            <label for="exampleInputIcon3">Role</label>
+                                <select  name="role" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" required>
+                                   
+                                 <option @selected($user->role == "admin") value="admin">Admin</option>
+                                 <option @selected($user->role == "user") value="user">User</option>
+
+                                </select>
+                        </div>
                         <div class="form-group ">
                             <div class="form-group">
                                 <label for="exampleInputPassword6">Password</label>

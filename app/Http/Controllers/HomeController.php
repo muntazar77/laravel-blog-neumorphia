@@ -62,4 +62,10 @@ class HomeController extends Controller
 
         return view('contact',['categories'=>$categories]);
     }
+
+    public function dashbord(){
+        // $categories =Category::all();
+
+        return view('admin/dashbord');
+    }
 }

@@ -45,6 +45,7 @@
                 <table>
                     <th>id</th>
                     <th>Name</th>
+                    <th>Role</th>
                     <th>Email</th>
                     <th>Crated Data</th>
                     <th>Action</th>
@@ -53,6 +54,7 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->role }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{$user->created_at->format('Y-m-d')}}</td>
 
@@ -108,6 +110,16 @@
                                     <input  class="form-control" name="email" id="exampleInputIcon3" placeholder="example@company.com" type="text" aria-label="email adress" required>
                                 </div>
                             </div>
+
+                            <div class="form-group ">
+                                <label for="exampleInputIcon3">Role</label>
+                                    <select name="role" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" required>
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                            </div>
+
+
                             <div class="form-group ">
                                 <div class="form-group">
                                     <label for="exampleInputPassword6">Password</label>
