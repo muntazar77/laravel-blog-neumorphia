@@ -1,4 +1,4 @@
-# ![Laravel Example App](logo.png)
+# ![laravel-blog-neumorphia ](logo.png)
 
 
 
@@ -25,6 +25,9 @@ Switch to the repo folder
 Install all the dependencies using composer
 
     composer install
+    
+    npm install && npm run dev
+
 
 Copy the example env file and make the required configuration changes in the .env file
 
