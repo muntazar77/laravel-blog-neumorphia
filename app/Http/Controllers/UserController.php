@@ -43,8 +43,6 @@ class UserController extends Controller
 
         ]);
 
-// dd($request->role);
-
         User::create([
             'name' => $request->name,
             'email' => $request->email,

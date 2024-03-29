@@ -22,6 +22,7 @@ class PostFactory extends Factory
             'title' =>'This is a test '.fake()->name() ,
             'content' =>'This is a test post This is a test postThis is a test postThis is a test post'. fake()->name(),
             'image' =>  'noimage.jpg',
+            "fovourite" => "1",
             'created_at' =>now(),
 
         ];

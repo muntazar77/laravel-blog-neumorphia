@@ -83,21 +83,24 @@
                          
                             <button type="button" class="menu-button dropdown-toggle dropdown-toggle-split mr-n1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user"></i>
-                                {{-- <span class="sr-only">Toggle Dropdown</span> --}}
                             </button>
-                            <div class="dropdown-menu">
-                                {{-- <a class="dropdown-item" href="#">Login</a> --}}
-                                {{-- <a class="dropdown-item" href="#">Logout</a> --}}
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
 
+                            {{-- logout and Home buttons --}}
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                    Home Page
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                
+                               <a class="dropdown-item" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                   Logout
+                               </a>
+                               
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                {{-- <div class="dropdown-divider"></div> --}}
                             </div>
                         </div>
                     

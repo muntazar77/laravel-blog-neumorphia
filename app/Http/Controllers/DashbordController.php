@@ -10,24 +10,14 @@ use App\Models\Category;
 class dashbordController extends Controller
 {
  
-    //  public function __construct()
-    //  {
-    //      $this->middleware('auth');
-    //  }
-
+    // Dashbord Page
     public function index(){
         $users = User::all();
         $posts = Post::all();
         $categories = Category::all();
 
-        // $users_cont = count($users);
-        // $posts_cont = count($posts);
-        // $categories_cont = count($categories);
         return view('admin/dashbord',['users' => $users , 'posts' => $posts , 'categories' => $categories]);
     }
 
-   
-    // public function login(){
-    //     return view('admin/login');
-    // }
+
 }

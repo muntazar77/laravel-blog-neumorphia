@@ -26,46 +26,37 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // Home Page
     public function index()
     {
-        // // $users = User::all()->paginate(5);
 
-        // $titles = DB::table('users')->pluck('title');
-        $categories =Category::all();
+        //  $categories =Category::all();->to get all the categories
+        $categories = Category::take(3)->get();
         $posts_fovourite = Post::where('fovourite', 1)->get() ;//to get all the post with fovourite = 1
         $posts = Post::paginate(6);
-
- 
 
         return view('index', ['posts' =>$posts ,'posts_fovourite' => $posts_fovourite, 'categories'=>$categories]);
     }
 
+    // Post show Page
     public function post_show($post_title){
-
-        // $post =Post::where('id',$post_id);
-        // $post = Post::find($post_id);
         $categories =Category::all();
-
         $post=Post::where('title',$post_title)->first();
 
         return view('post_show',['post'=>$post, 'categories'=>$categories]);
     }
 
-    public function about(){
-        $categories =Category::all();
 
+    //  about page
+    public function about(){
+         $categories = Category::take(3)->get();
         return view('about',['categories'=>$categories]);
     }
 
+    // contact Page
     public function contact(){
-        $categories =Category::all();
-
+         $categories = Category::take(3)->get();
         return view('contact',['categories'=>$categories]);
     }
 
-    public function dashbord(){
-        // $categories =Category::all();
-
-        return view('admin/dashbord');
-    }
 }

@@ -102,7 +102,6 @@
 
 
         </div>
-        {{-- {{ $posts->links() }} --}}
         {{ $posts->links('layouts.pagination') }}
 
         {{-- <div class="container row justify-content-center mt-5 ">
@@ -127,7 +126,6 @@
     </div> --}}
 </section>
 
-    <!--#######################  End of posts section  #######################-->
 
 
 
@@ -179,7 +177,7 @@
         
 
 
-                        
+                      {{-- Trending Posts --}}
                 <div class="col-4 col-md-4 ">
                     <div class="row mb-2">
                         <h2 class="h2 text-left">Trending</h2>
@@ -187,6 +185,42 @@
 
                     <div class="row">
                         <div class="col-12 col-md-12" >
+                            <div class="card bg-primary shadow-soft border-light mb-3 border-top">
+                                <div class="row no-gutters align-items-center text-left">
+                                    <div class="col-md-1 text-right">
+                                        <h3 class="h5 card-title w-100" style="color: rgba(62, 59, 59, 0.476);">1</h3>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div class="card-body">
+                                            <a href="#"><h3 class="h5 card-title">We partnered up with Google</h3></a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>15 March 2020</span>
+                                                <a href="#" class="small"><span class="far fa-comments mr-2"></span>21</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="card bg-primary shadow-soft border-light mb-3 border-top">
+                                <div class="row no-gutters align-items-center text-left">
+                                    <div class="col-md-1 text-right">
+                                        <h3 class="h5 card-title w-100" style="color: rgba(62, 59, 59, 0.476);">1</h3>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div class="card-body">
+                                            <a href="#"><h3 class="h5 card-title">We partnered up with Google</h3></a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>15 March 2020</span>
+                                                <a href="#" class="small"><span class="far fa-comments mr-2"></span>21</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+
                             <div class="card bg-primary shadow-soft border-light mb-3 border-top">
                                 <div class="row no-gutters align-items-center text-left">
                                     <div class="col-md-1 text-right">
