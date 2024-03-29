@@ -106,7 +106,11 @@
                         <td>{{$post->id}}</td>
                         <td><img src="{{asset('images/'.$post->image)}}" alt="" style="width: 65px; height: 65px;"></td>
                         <td>{{$post->title}}</td>
+                        @if ($post->user == null)
+                        <td>Unknown</td>
+                        @else
                         <td>{{$post->user->name}}</td>
+                        @endif
                         <td>{{$post->created_at->format('Y-m-d')}}</td>
                    
                     </tr>

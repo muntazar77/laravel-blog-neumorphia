@@ -33,7 +33,7 @@ class HomeController extends Controller
         // $titles = DB::table('users')->pluck('title');
         $categories =Category::all();
         $posts_fovourite = Post::where('fovourite', 1)->get() ;//to get all the post with fovourite = 1
-        $posts = Post::paginate(3);
+        $posts = Post::paginate(6);
 
  
 

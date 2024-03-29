@@ -21,7 +21,10 @@ class IsAdmin
             // return redirect(route('home'))->with('error', 'You are not authorized to access this page');
             return redirect(route('home'));
         }if(auth()->user()->role == 'admin'){
-            return redirect(route('admin.index'));
+            // return redirect(route('admin.index'));
+            return $next($request);
+        }else{
+            return redirect(route('home'));
         }
         
 

@@ -86,14 +86,48 @@
                 </ul>
             </div>
             <div class="d-flex align-items-center">
-                <!-- <a href="#" target="_blank" class="btn btn-primary text-secondary d-none d-md-inline-block mr-3"> login</a> -->
-                <!-- Button Modal -->
-                    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal-form"> Login </button>
-                    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal-form-signup">Sign Up</button>
-                <!-- <a href="#" target="_blank" class="btn btn-primary"></i> Sign up</a> -->
-                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+             
+
+                @if (Route::has('login'))
+           
+               <nav class="-mx-3 flex flex-1 justify-end">
+                @auth
+                   
+                {{-- Logout Button--}}
+                    <div class="Logout">
+                            <a class="btn btn-primary mr-2" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();"> Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                      </div>
+                
+
+                    @else
+
+                {{-- login Button--}}
+                        <a  href="{{ route('login') }}" class="btn btn-primary mr-2"  >
+                            Log in
+                        </a>
+
+
+                        @if (Route::has('register'))
+                            {{-- <a href="{{ route('register') }}" class="btn btn-primary mr-2" >
+                                Register
+                            </a> --}}
+                            <!-- Button Modal -->
+                            {{-- <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal-form">Sign
+                                In</button> --}}
+
+                                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#modal-form-signup">Sign
+                                    Up</button>
+
+                        @endif
+                    @endauth
+                </nav>
+            @endif
+
             </div>
         </div>
     </nav>
@@ -103,69 +137,12 @@
 
 
 
-        <!--#######################  Modals Content   #######################-->
-
-<!-- Modal for login -->
-
-<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="card bg-primary shadow-soft border-light p-4">
-                    <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <div class="card-header text-center pb-0">
-                        <h2 class="h4">Sign in to our platform</h2>
-                        <span>Login here using your username and password</span>   
-                    </div>
-                    <div class="card-body">
-                        <form action="#" class="mt-4">
-                            <!-- Form -->
-                            <div class="form-group">
-                                <label for="exampleInputIcon3">Your email</label>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="fas fa-envelope"></span></span>
-                                    </div>
-                                    <input class="form-control" id="exampleInputIcon3" placeholder="example@company.com" type="text" aria-label="email adress">
-                                </div>
-                            </div>
-                            <!-- End of Form -->
-                            <div class="form-group">
-                                <!-- Form -->
-                                <div class="form-group">
-                                    <label for="exampleInputPassword6">Password</label>
-                                    <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                        </div>
-                                        <input class="form-control" id="exampleInputPassword6" placeholder="Password" type="password" aria-label="Password" required>
-                                    </div>
-                                </div>
-                                <!-- End of Form -->
-                                <div class="d-block d-sm-flex justify-content-between align-items-center mb-4">
-                                    <div class="form-check mb-2 mb-sm-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
-                                        <label class="form-check-label" for="defaultCheck5">
-                                            Remember me
-                                        </label>
-                                    </div>
-                                    <div><a href="#" class="small text-right">Lost password?</a></div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-primary">Sign in</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<!-- Modal for Sign Up -->
 
+    
+
+<!-- Modal Content -->
 <div class="modal fade" id="modal-form-signup" tabindex="-1" role="dialog" aria-labelledby="modal-form-signup" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -178,40 +155,70 @@
                         <h2 class="mb-0 h5">Create Account</h2>                               
                     </div>
                     <div class="card-body">
-                        <form action="#">
-                            <!-- Form -->
+                        <form method="POST" action="{{route('register')}}">
+                            @csrf
+                            <!-- Name-->
+                            <div class="form-group">
+                                <label for="exampleInputIcon4">Your Name</label>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span class="fas fa-envelope"></span></span>
+                                    </div>
+                                    <input class="form-control" id="name" placeholder="Name" type="text" aria-label="name" @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                            </div>
+
+                            <!-- Email-->
                             <div class="form-group">
                                 <label for="exampleInputIcon4">Your email</label>
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="fas fa-envelope"></span></span>
                                     </div>
-                                    <input class="form-control" id="exampleInputIcon4" placeholder="example@company.com" type="text" aria-label="email adress">
+                                    <input class="form-control" id="exampleInputIcon4" placeholder="example@company.com" type="email" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
-                            <!-- End of Form -->
+                        
+                                <!-- Password -->
                             <div class="form-group">
-                                <!-- Form -->
                                 <div class="form-group">
                                     <label for="exampleInputPassword7">Password</label>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                         </div>
-                                        <input class="form-control" id="exampleInputPassword7" placeholder="Password" type="password" aria-label="Password" required>
+                                        <input class="form-control" id="exampleInputPassword7" placeholder="Password" type="password" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" >
+                                     @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
                                 </div>
-                                <!-- End of Form -->
-                                <!-- Form -->
+                                <!-- End of Password -->
+
+                                <!-- Confirm Password -->
                                 <div class="form-group">
                                     <label for="exampleConfirmPassword7">Confirm Password</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                         </div>
-                                        <input class="form-control" id="exampleConfirmPassword7" placeholder="Confirm password" type="password" aria-label="Password" required>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
+
+
                                 <!-- End of Form -->
                                 <div class="form-check mb-4">
                                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
@@ -236,13 +243,19 @@
                                 <span aria-hidden="true" class="fab fa-github"></span>
                             </button>
                         </div>
-        
+                        <div class="d-block d-sm-flex justify-content-center align-items-center mt-4">
+                            <span class="font-weight-normal">
+                                Already have an account?
+                                <a href="#" class="font-weight-bold">Login here</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- End of Modal Content -->
 
         <!--#######################  End of Modals content  #######################-->
 
@@ -250,6 +263,34 @@
 
 
     <main>
+
+  @if ($errors->any())
+      <div class="container mt-7 " style="z-index: 200;" >
+          <!--alert Error  -->
+          @foreach ($errors->all() as $error)
+          <div class="alert  alert-danger alert-dismissible shadow-soft fade show" role="alert">
+              <span class="alert-inner--icon"><span class="fas fa-exclamation-circle"></span></span>
+              <span class="alert-inner--text"><strong>Error!</strong> {{$error}} </span>
+              <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          @endforeach
+
+          @endif
+
+          <!--alert success  -->
+          @if (session('success'))
+          <div class="alert alert-success alert-dismissible shadow-soft fade show" role="alert">
+              <span class="alert-inner--icon"><span class="far fa-thumbs-up"></span></span>
+              <span class="alert-inner--text"><strong>Well done!</strong> {{session('success')}}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+
+          @endif
+      </div>
 
         @yield('content')
 

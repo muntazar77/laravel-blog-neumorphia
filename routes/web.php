@@ -9,24 +9,24 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
 Route::get('/home/post/{post}', [HomeController::class, 'post_show'])->name('home.post.show');
-Route::get('/login', [HomeController::class, 'login'])->name('home.login');
+// Route::get('/login', [HomeController::class, 'login'])->name('home.login');
 
 Auth::routes();
 
 
 
-Route::group(['middleware' => ['admin']], function () {
+Route::group(['middleware' => ['admin','auth']], function () {
         // Admin Pages
-        Route::get('/admin/dashbord',[DashbordController::class, 'index'])->name('admin.index');
+        Route::get('/admin',[DashbordController::class, 'index'])->name('admin.index');
     
             // Route for users
         Route::get('/admin/users',[UserController::class, 'index'])->name('users.index');
@@ -56,13 +56,3 @@ Route::group(['middleware' => ['admin']], function () {
  });
 
 
-
-// Route::resource('/admin/users', 'App\Http\Controllers\UserController');
-
-
-
-// Auth::routes();
-
-
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

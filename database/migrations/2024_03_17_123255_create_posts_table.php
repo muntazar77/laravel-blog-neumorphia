@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('fovourite')->default('no');
-            $table->string('image');
+            $table->string('image')->default('noimage.jpg');
             $table->timestamps();
             $table->unsignedBigInteger('user_id')->nullable();
 
