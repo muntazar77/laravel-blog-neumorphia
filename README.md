@@ -36,7 +36,7 @@ Copy the example env file and make the required configuration changes in the .en
 
 Run the database migrations (**Set the database connection in .env before migrating**)
 
-   php artisan migrate:fresh --seed
+    php artisan migrate:fresh --seed
 
 Start the local development server
 
@@ -46,15 +46,15 @@ You can now access the server at http://localhost:8000
 
 **TL;DR command list**
 
-    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
-    cd laravel-realworld-example-app
+     git clone https://github.com/muntazar77/laravel-blog-neumorphia.git
+     cd laravel-blog-neumorphia 
     composer install
+    npm install 
     cp .env.example .env
-    php artisan key:generate
-    php artisan jwt:generate 
+    php artisan migrate:fresh --seed
+    php artisan serve
     
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
 
-    php artisan migrate
-    php artisan serve
+   
 
